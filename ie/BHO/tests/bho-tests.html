@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>BHO Tests</title>
+    <style>
+      body { font-family:Tahoma,sans-serif; }
+    </style>
+    <script>
+      callSetFileField = function(){
+        var filepath = document.getElementById('filepath').value;
+        window.bah.setFileField('file_field',filepath);
+      }
+
+      callShowMessage = function(){
+        var textToSay = document.getElementById('say_hello_text').value;
+        window.bah.showMessage(textToSay);
+      }
+
+      callHelloWorld = function(){
+        window.bah.helloWorld();
+      }
+    </script>
+  </head>
+  <body>
+
+    <form method="post" enctype="multipart/form-data" name="bhoTests">
+
+
+      <h3>Show Message Box (zero parameters)</h3>
+      <button id="say-hello" onclick="callHelloWorld()" />Say Hello</button>
+      (A simple message box, taking no parameters. Message will say "Hello, World!")
+      <br /><br /><br />
+
+
+
+      <h3>Show Message Box (with one parameter)</h3>
+      Text to show in a message box: <input id="say_hello_text" name="say_hello_text" value="Your ad here!">
+      <br />
+      <button id="show-message" onclick="callShowMessage()" />Show Message</button>
+      (This time, a parameter is passed from JavaScript to the BHO.)
+      <br /><br /><br />
+
+
+      <h3>File Upload Field</h3>
+      Filepath to set in the field below: <input id="filepath" name="filepath" value="c:\enter_a_path_here">
+      <br />
+      File Field: <input id="file_field" name="file_field" type="file">
+      <br />
+      <button id="set-file-field" onclick="callSetFileField()" />Set File Field</button>
+
+    </form>
+  </body>
+</html>
