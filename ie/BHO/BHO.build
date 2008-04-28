@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<project name="Bah" default="run">
+    <property name="debug" value="true"/>
+
+    <target name="clean" description="Remove all generated files">
+        <exec program="msbuild" failonerror="true">
+            <arg value="BHOBrowserAutomationHelper.csproj"/>
+            <arg value="/p:Configuration=Release"/>
+            <arg value="/target:Clean"/>        
+        </exec>         
+        <delete file="obj/Release/Interop.stdole.dll" if="${file::exists('obj/Release/Interop.stdole.dll')}" />
+        <delete dir="bin" />
+        <delete dir="obj" />
+    </target>
+
+    <target name="build" description="Compiles the source code">
+        <exec program="msbuild" failonerror="true">
+            <arg value="BHOBrowserAutomationHelper.csproj"/>
+            <arg value="/p:Configuration=Release"/>
+            <arg value="/target:Build"/>
+        </exec>                
+    </target>
+
+    <target name="register" 
+            description="Registers the BHO dll"
+            depends="build">
+        <exec program="regasm.exe" failonerror="true">
+            <arg value="bin/Release/BHOBrowserAutomationHelper.dll"/>
+            <arg value="/codebase"/>
+        </exec>                
+    </target>
+    
+    <target name="unregister" description="Unregisters the BHO dll">
+        <exec program="regasm.exe" failonerror="true">
+            <arg value="bin/Release/BHOBrowserAutomationHelper.dll"/>
+            <arg value="/unregister"/>
+        </exec>                
+    </target>    
+
+    <target name="install" depends="register"></target>
+    <target name="uninstall" depends="unregister"></target>
+    
+    <target name="run" depends="build">
+    </target>
+</project>

@@ -1,0 +1,9 @@
+You'll need:
+  * Microsoft .Net (tested with 3.5)
+  * Nant
+
+Add path to Nant.exe, MSbuild.exe, and RegAsm.exe to your system PATH.
+
+To install:
+  $ cd ie/BHO
+  $ nant install
