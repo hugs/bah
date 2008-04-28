@@ -1,6 +1,7 @@
 You'll need:
-  * Microsoft .Net (tested with 3.5)
+  * Microsoft .Net Framework (tested with 3.5)
   * Nant
+  * WiX version 3 (for creating .msi installer)
 
 Add path to Nant.exe, MSbuild.exe, and RegAsm.exe to your system PATH.
 
