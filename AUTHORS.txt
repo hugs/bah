@@ -1,0 +1,9 @@
+AUTHORS.txt for Bah
+
+Bah - Browser Automation Helper
+
+---------------------------------------------------
+BHO template code: Jia Chen
+http://www.codeproject.com/KB/cs/Attach_BHO_with_C_.aspx
+
+Calling-c#-from-javaScript code: Jason Huggins, Google, Inc.
