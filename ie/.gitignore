@@ -1,0 +1,5 @@
+*.sln
+*.sln.cache
+*.suo
+obj/
+bin/
