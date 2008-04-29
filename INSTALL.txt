@@ -1,10 +1,31 @@
 You'll need:
-  * Microsoft .Net Framework (tested with 3.5)
-  * Nant
-  * WiX version 3 (for creating .msi installer)
+  * Microsoft .Net Framework 3.5
+  * Nant 0.86-beta1
+  * WiX version 3
+  (Earlier versions of the above tools might work, but haven't been tested.)
 
-Add path to Nant.exe, MSbuild.exe, and RegAsm.exe to your system PATH.
+Add path to Nant.exe, MSbuild.exe, and Wix to your system PATH.
+
+For example:
+  ## NAant:
+  #set PATH=%PATH%;C:\applications\nant-0.86-beta1\bin
+
+  ## .Net framework (Path to MSBuild.exe)
+  #set PATH=%PATH%;c:\WINDOWS\Microsoft.NET\Framework\v3.5
+
+  ## For RegAsm.exe DLL registration (for development/testing only)"
+  #set PATH=%PATH;c:\WINDOWS\Microsoft.NET\Framework\v2.0.50727
+
+  ## For WiX (.msi Installer) compilation"
+  #set PATH=%PATH%;C:\applications\Windows Installer XML v3\bin
+
+
+
 
 To install:
   $ cd ie/BHO
+  $ nant build
   $ nant install
+
+To uninstall:
+  $ nant uninstall
