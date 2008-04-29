@@ -13,7 +13,10 @@
         <delete dir="obj" />
     </target>
 
-    <target name="build" description="Compiles the source code">
+
+    <target name="build" depends="build-code, build-installer"></target>
+
+    <target name="build-code" description="Compiles the source code">
         <exec program="msbuild" failonerror="true">
             <arg value="BHOBrowserAutomationHelper.csproj"/>
             <arg value="/p:Configuration=Release"/>
@@ -21,7 +24,47 @@
         </exec>                
     </target>
 
-    <target name="register" 
+
+    <target name="build-installer" 
+            depends="build-code"
+            description="Creates a .msi installer with WiX">
+            
+        <mkdir dir="obj/Installer" />    
+        <exec program="candle" failonerror="true">
+            <arg value="install/bah.wxs"/>
+            <arg line="-out obj/Installer/bah.wixobj"/>
+        </exec>    
+        
+        <mkdir dir="bin/Installer" />
+        <exec program="light" failonerror="true">
+            <arg value="obj/Installer/bah.wixobj"/>
+            <arg line="-out bin/Installer/bah.msi"/>
+        </exec>            
+    </target>
+
+
+    <target name="install"
+            depends="build"
+            description="Installs Bah!">
+        <exec program="msiexec" failonerror="true">
+            <arg value="/i"/>
+            <arg value="bin\Installer\bah.msi"/>
+            <arg value="/q"/>
+        </exec>          
+    </target>
+
+
+    <target name="uninstall" description="Uninstalls Bah!">
+        <exec program="msiexec" failonerror="true">
+            <arg value="/uninstall"/>
+            <arg value="bin\Installer\bah.msi"/>
+            <arg value="/q"/>
+        </exec>           
+    </target>
+    
+
+
+    <target name="register-dll" 
             description="Registers the BHO dll"
             depends="build">
         <exec program="regasm.exe" failonerror="true">
@@ -30,16 +73,14 @@
         </exec>                
     </target>
     
-    <target name="unregister" description="Unregisters the BHO dll">
+    <target name="unregister-dll" description="Unregisters the BHO dll">
         <exec program="regasm.exe" failonerror="true">
             <arg value="bin/Release/BHOBrowserAutomationHelper.dll"/>
             <arg value="/unregister"/>
         </exec>                
     </target>    
-
-    <target name="install" depends="register"></target>
-    <target name="uninstall" depends="unregister"></target>
-    
+   
     <target name="run" depends="build">
     </target>
+    
 </project>
