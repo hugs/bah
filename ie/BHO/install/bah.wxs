@@ -1,26 +1,49 @@
 <?xml version='1.0'?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-   <Product Id='1a18c789-4629-48f0-9111-d50fd1cedca6' Name='Browser Automation Helper' Language='1033'
-            Version='1.0.0.0' Manufacturer='Jason Huggins (Google, Inc.)'>
-      <Package Id='e9219247-ccf8-4389-abed-17dccdfb868d'
-                Description='A Windows Installer package for Bah (Browser Automation Helper).'
-                Comments='A Windows Installer database for Bah, the Browser Automation Helper.'
-                Manufacturer='Jason Huggins (Google, Inc.)' InstallerVersion='200' Compressed='yes' />
+   <Product Id='1a18c789-4629-48f0-9111-d50fd1cedca6' Name='Browser Automation Helper' 
+   			Language='1033'
+            Version='1.0.0.0'
+            UpgradeCode="a8a4d6a3-014f-4efa-8889-b9fa7add726f"
+            Manufacturer='Jason Huggins (Google, Inc.)'>
+      <Package Description='An Installer package for Bah (Browser Automation Helper).'
+               Comments='A Windows Installer database for Bah, the Browser Automation Helper.'
+               Manufacturer='Jason Huggins (Google, Inc.)' InstallerVersion='200' Compressed='yes' />
  
       <Media Id='1' Cabinet='bah.cab' EmbedCab='yes' />
  
       <Directory Id='TARGETDIR' Name='SourceDir'>
          <Directory Id='ProgramFilesFolder' Name='PFiles'>
-            <Directory Id='MyDir' Name='BahProg' LongName='Browser Automation Helper'>
-               <Component Id='BHOComponent' Guid='98eff4d0-b3c9-48a8-9ec7-c11f429203b1'>
-                  <File Id='readme' Name='readme.txt' DiskId='1' src='readme.txt' />
-               </Component>
+            <Directory Id='MyDir' Name='Browser Automation Helper'>                              
+               
+            <Component Id="CompBHOBrowserAutomationHelper.dll" Guid="{5885764D-5EF7-406F-901C-4CAA3251F552}">         
+                <File Id="BHOBrowserAutomationHelper.dll" Name="BHOBrowserAutomationHelper.dll" KeyPath="yes" Source="bin\Release\BHOBrowserAutomationHelper.dll" />
+                <RegistryValue Root="HKCR" Key="CLSID\{8A194578-81EA-4850-9911-13BA2D71EFBD}\InprocServer32\1.0.0.0" Name="Class" Value="BHOBrowserAutomationHelper.BHO" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{8A194578-81EA-4850-9911-13BA2D71EFBD}\InprocServer32\1.0.0.0" Name="Assembly" Value="BHOBrowserAutomationHelper, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{8A194578-81EA-4850-9911-13BA2D71EFBD}\InprocServer32\1.0.0.0" Name="RuntimeVersion" Value="v2.0.50727" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{8A194578-81EA-4850-9911-13BA2D71EFBD}\InprocServer32\1.0.0.0" Name="CodeBase" Value="[#BHOBrowserAutomationHelper.dll]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{8A194578-81EA-4850-9911-13BA2D71EFBD}\InprocServer32" Value="mscoree.dll" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{8A194578-81EA-4850-9911-13BA2D71EFBD}\InprocServer32" Name="Class" Value="BHOBrowserAutomationHelper.BHO" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{8A194578-81EA-4850-9911-13BA2D71EFBD}\InprocServer32" Name="Assembly" Value="BHOBrowserAutomationHelper, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{8A194578-81EA-4850-9911-13BA2D71EFBD}\InprocServer32" Name="RuntimeVersion" Value="v2.0.50727" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{8A194578-81EA-4850-9911-13BA2D71EFBD}\InprocServer32" Name="CodeBase" Value="[#BHOBrowserAutomationHelper.dll]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Component Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Name="0" Value=".NET Category" Type="string" Action="write" />
+                <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Browser Helper Objects\{8a194578-81ea-4850-9911-13ba2d71efbd}" Name="Alright" Value="1" Type="integer" Action="write" />
+
+            
+                <File Id="BHOBrowserAutomationHelper.pdb" Name="BHOBrowserAutomationHelper.pdb" Source="bin\Release\BHOBrowserAutomationHelper.pdb" />
+                <File Id="Interop.MSHTML.dll" Name="Interop.MSHTML.dll" Source="bin\Release\Interop.MSHTML.dll" />
+                <File Id="Interop.SHDocVw.dll" Name="Interop.SHDocVw.dll" Source="bin\Release\Interop.SHDocVw.dll" />            
+            
+            </Component>                                           
+               
             </Directory>
          </Directory>
       </Directory>
+
+ 
  
       <Feature Id='BHO' Title='Bah BHO for Internet Explorer' Level='1'>
-         <ComponentRef Id='BHOComponent' />
+         <ComponentRef Id='CompBHOBrowserAutomationHelper.dll' />
       </Feature>
    </Product>
 </Wix>
