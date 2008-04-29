@@ -25,8 +25,7 @@
     </target>
 
 
-    <target name="build-installer" 
-            depends="build-code"
+    <target name="build-installer"
             description="Creates a .msi installer with WiX">
             
         <mkdir dir="obj/Installer" />    
@@ -44,7 +43,6 @@
 
 
     <target name="install"
-            depends="build"
             description="Installs Bah!">
         <exec program="msiexec" failonerror="true">
             <arg value="/i"/>
@@ -63,15 +61,14 @@
     </target>
     
 
-
     <target name="register-dll" 
-            description="Registers the BHO dll"
-            depends="build">
+            description="Registers the BHO dll">
         <exec program="regasm.exe" failonerror="true">
             <arg value="bin/Release/BHOBrowserAutomationHelper.dll"/>
             <arg value="/codebase"/>
         </exec>                
     </target>
+    
     
     <target name="unregister-dll" description="Unregisters the BHO dll">
         <exec program="regasm.exe" failonerror="true">
