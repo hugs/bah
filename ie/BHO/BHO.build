@@ -61,7 +61,7 @@
     </target>
     
 
-    <target name="register-dll" 
+    <target name="register" 
             description="Registers the BHO dll">
         <exec program="regasm.exe" failonerror="true">
             <arg value="bin/Release/BHOBrowserAutomationHelper.dll"/>
@@ -70,7 +70,7 @@
     </target>
     
     
-    <target name="unregister-dll" description="Unregisters the BHO dll">
+    <target name="unregister" description="Unregisters the BHO dll">
         <exec program="regasm.exe" failonerror="true">
             <arg value="bin/Release/BHOBrowserAutomationHelper.dll"/>
             <arg value="/unregister"/>
