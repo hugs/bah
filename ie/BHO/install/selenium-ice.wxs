@@ -1,0 +1,49 @@
+<?xml version='1.0'?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+   <Product Id='1a18c789-4629-48f0-9111-d50fd1cedca6' Name='Browser Automation Helper' 
+            Language='1033'
+            Version='1.0.0.0'
+            UpgradeCode="a8a4d6a3-014f-4efa-8889-b9fa7add726f"
+            Manufacturer='Jason Huggins (Google, Inc.)'>
+      <Package Description='An Installer package for Selenium Ice.'
+               Comments='A Windows Installer database for Selenium Ice.'
+               Manufacturer='Jason Huggins (Google, Inc.)' InstallerVersion='200' Compressed='yes' />
+ 
+      <Media Id='1' Cabinet='ice.cab' EmbedCab='yes' />
+ 
+      <Directory Id='TARGETDIR' Name='SourceDir'>
+         <Directory Id='ProgramFilesFolder' Name='PFiles'>
+            <Directory Id='MyDir' Name='Browser Automation Helper'>                              
+            <Component Id="CompBHOSeleniumIce.dll" Guid="{5885764D-5EF7-406F-901C-4CAA3251F552}">         
+                <File Id="BHOSeleniumIce.dll" Name="BHOSeleniumIce.dll" KeyPath="yes" Source="bin\Release\BHOSeleniumIce.dll" />
+                <File Id="BHOSeleniumIce.pdb" Name="BHOSeleniumIce.pdb" Source="bin\Release\BHOSeleniumIce.pdb" />
+                <File Id="Interop.MSHTML.dll" Name="Interop.MSHTML.dll" Source="bin\Release\Interop.MSHTML.dll" />
+                <File Id="Interop.SHDocVw.dll" Name="Interop.SHDocVw.dll" Source="bin\Release\Interop.SHDocVw.dll" />   
+                <RegistryValue Root="HKCR" Key="CLSID\{8A194578-81EA-4850-9911-13BA2D71EFBD}" Value="Selenium Ice - BHO" Type="string" />
+                <RegistryValue Root="HKCR" Key="CLSID\{8A194578-81EA-4850-9911-13BA2D71EFBD}\Implemented Categories" Type="string" Value="" />
+                <RegistryValue Root="HKCR" Key="CLSID\{8A194578-81EA-4850-9911-13BA2D71EFBD}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Type="string" Value=""/>               
+                <RegistryValue Root="HKCR" Key="CLSID\{8A194578-81EA-4850-9911-13BA2D71EFBD}\InprocServer32" Value="mscoree.dll" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{8A194578-81EA-4850-9911-13BA2D71EFBD}\InprocServer32" Name="ThreadingModel" Value="Both" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{8A194578-81EA-4850-9911-13BA2D71EFBD}\InprocServer32" Name="Class" Value="BHOSeleniumIce.BHO" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{8A194578-81EA-4850-9911-13BA2D71EFBD}\InprocServer32" Name="Assembly" Value="BHOSeleniumIce, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{8A194578-81EA-4850-9911-13BA2D71EFBD}\InprocServer32" Name="RuntimeVersion" Value="v2.0.50727" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{8A194578-81EA-4850-9911-13BA2D71EFBD}\InprocServer32" Name="CodeBase" Value="[#BHOSeleniumIce.dll]" Type="string" Action="write" />               
+                <RegistryValue Root="HKCR" Key="CLSID\{8A194578-81EA-4850-9911-13BA2D71EFBD}\InprocServer32\1.0.0.0" Name="Class" Value="BHOSeleniumIce.BHO" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{8A194578-81EA-4850-9911-13BA2D71EFBD}\InprocServer32\1.0.0.0" Name="Assembly" Value="BHOSeleniumIce, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{8A194578-81EA-4850-9911-13BA2D71EFBD}\InprocServer32\1.0.0.0" Name="RuntimeVersion" Value="v2.0.50727" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{8A194578-81EA-4850-9911-13BA2D71EFBD}\InprocServer32\1.0.0.0" Name="CodeBase" Value="[#BHOSeleniumIce.dll]" Type="string" Action="write" />                
+                <RegistryValue Root="HKCR" Key="CLSID\{8A194578-81EA-4850-9911-13BA2D71EFBD}\ProgId" Value="BHOSeleniumIce.BHO" Type="string" />
+                <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Browser Helper Objects\{8a194578-81ea-4850-9911-13ba2d71efbd}" Name="Alright" Value="1" Type="integer" Action="write" />
+                <RegistryValue Root="HKCR" Key="BHOSeleniumIce.BHO" Value="BHOSeleniumIce.BHO" Type="string" />
+                <RegistryValue Root="HKCR" Key="BHOSeleniumIce.BHO\CLSID" Value="{8A194578-81EA-4850-9911-13BA2D71EFBD}" Type="string" />
+            </Component>                                            
+            </Directory>
+         </Directory>
+      </Directory>
+
+
+      <Feature Id='BHO' Title='Selenium Ice BHO for Internet Explorer' Level='1'>
+         <ComponentRef Id='CompBHOSeleniumIce.dll' />
+      </Feature>
+   </Product>
+</Wix>

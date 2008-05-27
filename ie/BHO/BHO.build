@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<project name="Bah" default="run">
+<project name="Selenium Ice" default="run">
     <property name="debug" value="true"/>
 
     <target name="clean" description="Remove all generated files">
         <exec program="msbuild" failonerror="true">
-            <arg value="BHOBrowserAutomationHelper.csproj"/>
+            <arg value="BHOSeleniumIce.csproj"/>
             <arg value="/p:Configuration=Release"/>
             <arg value="/target:Clean"/>        
         </exec>         
@@ -18,7 +18,7 @@
 
     <target name="build-code" description="Compiles the source code">
         <exec program="msbuild" failonerror="true">
-            <arg value="BHOBrowserAutomationHelper.csproj"/>
+            <arg value="BHOSeleniumIce.csproj"/>
             <arg value="/p:Configuration=Release"/>
             <arg value="/target:Build"/>
         </exec>                
@@ -30,32 +30,32 @@
             
         <mkdir dir="obj/Installer" />    
         <exec program="candle" failonerror="true">
-            <arg value="install/bah.wxs"/>
-            <arg line="-out obj/Installer/bah.wixobj"/>
+            <arg value="install/selenium-ice.wxs"/>
+            <arg line="-out obj/Installer/selenium-ice.wixobj"/>
         </exec>    
         
         <mkdir dir="bin/Installer" />
         <exec program="light" failonerror="true">
-            <arg value="obj/Installer/bah.wixobj"/>
-            <arg line="-out bin/Installer/bah.msi"/>
+            <arg value="obj/Installer/selenium-ice.wixobj"/>
+            <arg line="-out bin/Installer/selenium-ice.msi"/>
         </exec>            
     </target>
 
 
     <target name="install"
-            description="Installs Bah!">
+            description="Installs Ice!">
         <exec program="msiexec" failonerror="true">
             <arg value="/i"/>
-            <arg value="bin\Installer\bah.msi"/>
+            <arg value="bin\Installer\selenium-ice.msi"/>
             <arg value="/q"/>
         </exec>          
     </target>
 
 
-    <target name="uninstall" description="Uninstalls Bah!">
+    <target name="uninstall" description="Uninstalls Ice!">
         <exec program="msiexec" failonerror="true">
             <arg value="/uninstall"/>
-            <arg value="bin\Installer\bah.msi"/>
+            <arg value="bin\Installer\selenium-ice.msi"/>
             <arg value="/q"/>
         </exec>           
     </target>
@@ -64,7 +64,7 @@
     <target name="register" 
             description="Registers the BHO dll">
         <exec program="regasm.exe" failonerror="true">
-            <arg value="bin/Release/BHOBrowserAutomationHelper.dll"/>
+            <arg value="bin/Release/BHOSeleniumIce.dll"/>
             <arg value="/codebase"/>
         </exec>                
     </target>
@@ -72,7 +72,7 @@
     
     <target name="unregister" description="Unregisters the BHO dll">
         <exec program="regasm.exe" failonerror="true">
-            <arg value="bin/Release/BHOBrowserAutomationHelper.dll"/>
+            <arg value="bin/Release/BHOSeleniumIce.dll"/>
             <arg value="/unregister"/>
         </exec>                
     </target>    

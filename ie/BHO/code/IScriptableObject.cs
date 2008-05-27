@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.Runtime.InteropServices;
 
-namespace BHOBrowserAutomationHelper 
+namespace BHOSeleniumIce 
 {
     [
     InterfaceType(ComInterfaceType.InterfaceIsIDispatch)

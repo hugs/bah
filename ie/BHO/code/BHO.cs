@@ -7,13 +7,13 @@ using System.Runtime.InteropServices.Expando;
 using System.Reflection;
 
 
-namespace BHOBrowserAutomationHelper
+namespace BHOSeleniumIce
 {
     public static class Win32
-	{
-		[DllImport("user32.dll", SetLastError = true)]
-		public static extern bool SetForegroundWindow(int hWnd);
-	}
+    {
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern bool SetForegroundWindow(int hWnd);
+    }
 
     [
     ComVisible(true),
@@ -22,7 +22,7 @@ namespace BHOBrowserAutomationHelper
     public class ScriptableObject : IScriptableObject
     {
         WebBrowser webBrowser;
-        HTMLDocument document; 
+        HTMLDocument document;
 
         public ScriptableObject(WebBrowser browser)
         {
@@ -30,14 +30,19 @@ namespace BHOBrowserAutomationHelper
             document = webBrowser.Document as HTMLDocument;
         }
 
+
         public void helloWorld()
         {
-            System.Windows.Forms.MessageBox.Show("Hello, World!");
+            // Let's make a MessageBox that looks just like a JavaScript alert
+            System.Windows.Forms.MessageBox.Show("Hello, World!", 
+                                                 "Microsoft Internet Explorer",
+                                                 System.Windows.Forms.MessageBoxButtons.OK,
+                                                 System.Windows.Forms.MessageBoxIcon.Exclamation);       
         }
 
         public void showMessage(String textToShow)
         {
-            System.Windows.Forms.MessageBox.Show(textToShow);
+            System.Windows.Forms.MessageBox.Show(textToShow, "Microsoft Internet Explorer");
         }
 
         public void setFileField(String fieldId, String filePath)
@@ -77,8 +82,8 @@ namespace BHOBrowserAutomationHelper
             winExpando = window as IExpando;
             IScriptableObject so = new ScriptableObject(webBrowser);
 
-            // Warning!!! You (yes, *you*!) should change "bah" to a unique string for your project.
-            PropertyInfo myProp = winExpando.AddProperty("bah");
+            // Adding our custom namespace to JavaScript land.
+            PropertyInfo myProp = winExpando.AddProperty("ice");
             myProp.SetValue(winExpando, so, null);
         }
 
@@ -120,7 +125,7 @@ namespace BHOBrowserAutomationHelper
             if (site != null)
             {
                 webBrowser = (WebBrowser)site;
-                webBrowser.DocumentComplete += new DWebBrowserEvents2_DocumentCompleteEventHandler(this.OnDocumentComplete);
+                webBrowser.DocumentComplete += new DWebBrowserEvents2_DocumentCompleteEventHandler(this.OnDocumentComplete);                
             }
             else
             {

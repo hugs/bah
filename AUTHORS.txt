@@ -1,6 +1,6 @@
-AUTHORS.txt for Bah
+AUTHORS.txt for Selenium Ice
 
-Bah - Browser Automation Helper
+Ice - cool extensions (for Selenium)
 
 ---------------------------------------------------
 BHO template code: Jia Chen

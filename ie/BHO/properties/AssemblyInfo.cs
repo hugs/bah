@@ -1,16 +1,16 @@
-﻿using System.Reflection;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("BHOBrowserAutomationHelper")]
-[assembly: AssemblyDescription("A Simple BHO for IE showing how to call C# from JavaScript.")]
+[assembly: AssemblyTitle("BHOSeleniumIce")]
+[assembly: AssemblyDescription("A BHO extending the browser with useful extensions for test automation.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Google, Inc.")]
-[assembly: AssemblyProduct("BHOBrowserAutomationHelper")]
-[assembly: AssemblyCopyright("Copyright Google © 2008")]
+[assembly: AssemblyProduct("BHOSeleniumIce")]
+[assembly: AssemblyCopyright("Copyright Google, Inc. 2008")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
